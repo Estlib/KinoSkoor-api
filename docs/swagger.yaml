@@ -1,0 +1,24 @@
+swagger: '2.0'
+info:
+    title: KinoSkoor
+    version: 1.0.0
+    description: 'Hinda filme, ja pritsi tatti'
+paths:
+    /films:
+        get:
+            tags:
+                - films
+            responses:
+                '200':
+                    description: Returns a list of Movies
+                    schema:
+                        type: array
+                        items:
+                            type: string
+                    examples:
+                        application/json:
+                            - Terminator 2
+                            - Minions
+                            - Devil wears a prada
+            summary: Get all the <Films> in API
+            description: Return all Films that are registered in API
