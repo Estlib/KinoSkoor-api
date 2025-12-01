@@ -22,3 +22,42 @@ paths:
                             - Devil wears a prada
             summary: Get all the <Films> in API
             description: Return all Films that are registered in API
+    '/films/{FilmID}':
+        get:
+            tags:
+                - Films
+            responses:
+                '200':
+                    description: Returns all details of the given <Film>
+                    schema:
+                        type: array
+                        items:
+                            type: string
+                    examples:
+                        application/json:
+                            FilmID: 5c545a29-cec3-11f0-b43f-901b0eec5991
+                            Name: TestMovie
+                            Description: For testing purposes
+                            UserScore: 1
+                            RunTime: 1
+                            ReleaseYear: 1999
+                            Language: Estonglish
+                            createdAt: '2025-12-01T16:37:05.000Z'
+                            updatedAt: '2025-12-01T16:37:05.000Z'
+                '404':
+                    description: Returns error when <Film> not found
+                    schema:
+                        $ref: '#/definitions/error'
+            operationId: FilmID
+            summary: Get full details of a <Film>
+            description: Will return all details of a given <Film> based on FilmID given.
+definitions:
+    error:
+        title: Root Type for error
+        description: ''
+        type: object
+        properties:
+            error:
+                type: string
+        example:
+            error: Error message

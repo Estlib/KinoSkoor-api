@@ -17,6 +17,7 @@
     "nodemon": "^3.1.11",
     "sequelize": "^6.37.7",
     "swagger-ui-express": "^5.0.1",
+    "uuid": "^13.0.0",
     "yamljs": "^0.3.0"
   }
 }
