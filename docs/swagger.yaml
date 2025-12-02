@@ -7,7 +7,7 @@ paths:
     /films:
         get:
             tags:
-                - films
+                - Films
             responses:
                 '200':
                     description: Returns a list of Movies
@@ -23,6 +23,8 @@ paths:
             summary: Get all the <Films> in API
             description: Return all Films that are registered in API
         post:
+            tags:
+                - Films
             parameters:
                 -
                     name: body
