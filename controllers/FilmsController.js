@@ -32,6 +32,7 @@ async (req,res) => {
         return res.status(400).send({error:'Missing some parameter, please review your request data.'})
     }
     const newFilm = {
+        FilmID: UUID.v7(),
         Name: req.body.Name,
         Description: req.body.Description,
         RunTime: req.body.RunTime,
