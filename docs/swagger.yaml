@@ -1,8 +1,3 @@
-###
-#  #
-###
-#
-#
 swagger: '2.0'
 info:
     title: KinoSkoor
@@ -12,7 +7,7 @@ paths:
     /films:
         get:
             tags:
-                - films
+                - Films
             responses:
                 '200':
                     description: Returns a list of Movies
@@ -27,6 +22,28 @@ paths:
                             - Devil wears a prada
             summary: Get all the <Films> in API
             description: Return all Films that are registered in API
+        post:
+            tags:
+                - Films
+            parameters:
+                -
+                    name: body
+                    description: The <Film> that is to be created.
+                    schema:
+                        $ref: '#/definitions/new-Film'
+                    in: body
+                    required: true
+            responses:
+                '201':
+                    description: Send 201 when <Film> is successfully added to the database
+                    schema:
+                        $ref: '#/definitions/new-Film'
+                '400':
+                    description: 'Missing some parameter, please review your request data.'
+                    schema:
+                        $ref: '#/definitions/error'
+            summary: Create a new <Film> into the app
+            description: 'Creates a new <Film> instance with its required details, for further usage.'
     '/films/{FilmID}':
         get:
             tags:
@@ -56,6 +73,13 @@ paths:
             operationId: FilmID
             summary: Get full details of a <Film>
             description: Will return all details of a given <Film> based on FilmID given.
+        parameters:
+            -
+                name: FilmID
+                description: ID of Film
+                in: path
+                required: true
+                type: string
 definitions:
     error:
         title: Root Type for error
@@ -66,3 +90,32 @@ definitions:
                 type: string
         example:
             error: Error message
+    new-Film:
+        title: Root Type for new-Film
+        description: ''
+        required:
+            - Description
+            - Language
+            - Name
+            - ReleaseYear
+            - RunTime
+        type: object
+        properties:
+            Name:
+                type: string
+            Description:
+                type: string
+            RunTime:
+                format: int32
+                type: integer
+            ReleaseYear:
+                format: int32
+                type: integer
+            Language:
+                type: string
+        example:
+            Name: NewMovieName
+            Description: NewMovieDescription
+            RunTime: 90
+            ReleaseYear: 1999
+            Language: NewMovieLanguage
