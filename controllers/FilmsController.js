@@ -20,6 +20,29 @@ async (req, res) => {
     return res.status(200).send(film)
 }
 
+exports.create =
+async (req,res) => {
+    if (
+        !req.body.Name ||
+        !req.body.Description ||
+        !req.body.RunTime ||
+        !req.body.ReleaseYear ||
+        !req.body.Language
+    ){
+        return res.status(400).send({error:'Missing some parameter, please review your request data.'})
+    }
+    const newFilm = {
+        Name: req.body.Name,
+        Description: req.body.Description,
+        RunTime: req.body.RunTime,
+        ReleaseYear: req.body.ReleaseYear,
+        Language: req.body.Language,
+    }
+    const createdFilm = await db.films.create(newFilm);
+    return res
+    .location(`${Utilities.getBaseURL(req)}/films/${createdFilm.FilmID}`).sendStatus(201);
+}
+
 const getFilm =
 async (req, res) => {
     const idNumber = req.params.FilmID;
