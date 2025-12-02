@@ -73,6 +73,13 @@ paths:
             operationId: FilmID
             summary: Get full details of a <Film>
             description: Will return all details of a given <Film> based on FilmID given.
+        parameters:
+            -
+                name: FilmID
+                description: ID of Film
+                in: path
+                required: true
+                type: string
 definitions:
     error:
         title: Root Type for error
