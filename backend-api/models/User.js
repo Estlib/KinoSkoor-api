@@ -1,36 +1,34 @@
 module.exports = (sequelize, DataTypes) => {
-    const Film = sequelize.define(
-        'Film', {
-            FilmID: {
+    const User = sequelize.define(
+        'User', {
+            UserID: {
                 type: DataTypes.UUID,
                 primaryKey: true,
                 defaultValue: DataTypes.UUID
             },
-            Name: {
+            FullName: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
-            Description: {
+            EmailAddress: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
-            UserScore: {
-                type: DataTypes.DECIMAL,
-            },
-            RunTime: {
-                type: DataTypes.INTEGER,
-                allowNull: false
-            },
-            ReleaseYear: {
-                type: DataTypes.INTEGER,
-                allowNull: false
-            },
-            Language: {
+            PasswordHASH: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
+            DisplayName: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
+            PhoneNumber2FA: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
+            // LISTID ORDERS MISSING DUE TO TABLE MISSING
         }
     )
-    console.log(Film === sequelize.models.Film)
-    return Film;
+    console.log(User === sequelize.models.User)
+    return User;
 }

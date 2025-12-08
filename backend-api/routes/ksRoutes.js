@@ -9,4 +9,6 @@ module.exports = (app) => {
     .get(FilmsController.getByID)
     .delete(FilmsController.deleteById)
     .put(FilmsController.modifyById)
+    app.route("/users")
+    .post(FilmsController.create)
 }
