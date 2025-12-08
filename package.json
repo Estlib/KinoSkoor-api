@@ -1,7 +1,7 @@
 {
   "name": "kinoskoor-api",
   "version": "1.0.0",
-  "description": "api ja veebisait filmide arvustamise jms jaoks (TARge24)",
+  "description": "Api and site, for reviewing movies, for Estonian market. (TARge24)\r -------------\r # How to run this app",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,14 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^17.2.3",
-    "express": "^5.1.0",
-    "mariadb": "^3.4.5",
-    "nodemon": "^3.1.11",
-    "sequelize": "^6.37.7",
-    "swagger-ui-express": "^5.0.1",
-    "uuid": "^13.0.0",
-    "yamljs": "^0.3.0"
+    "concurrently": "^9.2.1"
   }
 }

@@ -73,6 +73,37 @@ paths:
             operationId: FilmID
             summary: Get full details of a <Film>
             description: Will return all details of a given <Film> based on FilmID given.
+        delete:
+            tags:
+                - Films
+            parameters:
+                -
+                    name: body
+                    description: Id of <Film> to be removed from the app
+                    schema:
+                        $ref: '#/definitions/delete-Film'
+                    in: body
+                    required: true
+            responses:
+                '204':
+                    description: |
+                        Returns "No Content" when removasl of <Film> is successful
+                    schema:
+                        $ref: '#/definitions/error'
+                    examples:
+                        application/json:
+                            -
+                                error: No Content
+                '404':
+                    description: 'Returns error, when <Film> with specified ID does not exist'
+                    schema:
+                        $ref: '#/definitions/error'
+                    examples:
+                        application/json:
+                            -
+                                error: Id not found
+            summary: Delete a <Film> from the app
+            description: 'Deletes and entry from the app, NEVER TO BE SEEN AGAIN.'
         parameters:
             -
                 name: FilmID
@@ -119,3 +150,12 @@ definitions:
             RunTime: 90
             ReleaseYear: 1999
             Language: NewMovieLanguage
+    delete-Film:
+        title: Root Type for delete-Film
+        description: ''
+        type: object
+        properties:
+            FilmID:
+                type: string
+        example:
+            FilmID: 5c545a29-cec3-11f0-b43f-901b0eec5991

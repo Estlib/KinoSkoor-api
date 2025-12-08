@@ -45,6 +45,17 @@ async (req,res) => {
     .location(`${Utilities.getBaseURL(req)}/films/${createdFilm.FilmID}`).sendStatus(201);
 }
 
+exports.deleteById =
+async (req,res) => {
+    const filmToBeDeleted = await getFilm(req,res);
+    if(!filmToBeDeleted) 
+    {
+        return;
+    }
+    await filmToBeDeleted.destroy();
+    res.status(204).send({error:"No Content"})
+}
+
 const getFilm =
 async (req, res) => {
     const idNumber = req.params.FilmID;

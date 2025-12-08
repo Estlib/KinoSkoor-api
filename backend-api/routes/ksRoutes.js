@@ -7,4 +7,5 @@ module.exports = (app) => {
     .post(FilmsController.create)
     app.route("/films/:FilmID")
     .get(FilmsController.getByID)
+    .delete(FilmsController.deleteById)
 }
