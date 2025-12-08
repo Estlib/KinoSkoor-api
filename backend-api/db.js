@@ -25,7 +25,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 db.films = require("./models/Film.js")(sequelize,DataTypes);
-db.films = require("./models/User.js")(sequelize,DataTypes);
+db.users = require("./models/User.js")(sequelize,DataTypes);
 
 const sync = (async ()=> {
     await sequelize.sync({alter: true});

@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
             FilmID: {
                 type: DataTypes.UUID,
                 primaryKey: true,
-                defaultValue: DataTypes.UUID
+                defaultValue: DataTypes.UUIDV7
             },
             Name: {
                 type: DataTypes.STRING,

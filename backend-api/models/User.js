@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
             UserID: {
                 type: DataTypes.UUID,
                 primaryKey: true,
-                defaultValue: DataTypes.UUID
+                defaultValue: DataTypes.UUIDV7
             },
             FullName: {
                 type: DataTypes.STRING,
@@ -24,8 +24,8 @@ module.exports = (sequelize, DataTypes) => {
             },
             PhoneNumber2FA: {
                 type: DataTypes.STRING,
-                allowNull: false
-            },
+                allowNull: true
+            }
             // LISTID ORDERS MISSING DUE TO TABLE MISSING
         }
     )
