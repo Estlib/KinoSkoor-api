@@ -8,4 +8,5 @@ module.exports = (app) => {
     app.route("/films/:FilmID")
     .get(FilmsController.getByID)
     .delete(FilmsController.deleteById)
+    .put(FilmsController.modifyById)
 }

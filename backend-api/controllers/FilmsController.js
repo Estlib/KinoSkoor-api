@@ -56,6 +56,32 @@ async (req,res) => {
     res.status(204).send({error:"No Content"})
 }
 
+exports.modifyById =
+async (req, res) => {
+    const filmToBeChanged = await getFilm(req,res);
+    if(!filmToBeChanged) {
+        return;
+    }
+    if (
+        !req.body.Name ||
+        !req.body.Description ||
+        !req.body.RunTime ||
+        !req.body.ReleaseYear ||
+        !req.body.Language
+    ){
+        return res.status(400).send({error:'Missing some parameter, please review your request data.'})
+    }
+    filmToBeChanged.Name = req.body.Name;
+    filmToBeChanged.NameDescription = req.body.Description;
+    filmToBeChanged.NameRunTime = req.body.RunTime;
+    filmToBeChanged.NameReleaseYear = req.body.ReleaseYear;
+    filmToBeChanged.NameLanguage = req.body.Language;
+    await filmToBeChanged.save();
+    return res
+    .location(`${Utilities.getBaseURL(req)}/films/${filmToBeChanged.FilmID}`).sendStatus(201)
+    .send(filmToBeChanged);
+}
+
 const getFilm =
 async (req, res) => {
     const idNumber = req.params.FilmID;

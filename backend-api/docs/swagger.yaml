@@ -73,6 +73,46 @@ paths:
             operationId: FilmID
             summary: Get full details of a <Film>
             description: Will return all details of a given <Film> based on FilmID given.
+        put:
+            tags:
+                - Films
+            parameters:
+                -
+                    name: body
+                    description: Contains new data to be changed in the specified Film
+                    schema:
+                        $ref: '#/definitions/new-Film'
+                    in: body
+                    required: true
+            responses:
+                '201':
+                    description: Returns 201 upon successful modification of Film
+                    schema:
+                        $ref: '#/definitions/new-Film'
+                    examples:
+                        application/json:
+                            -
+                                Name: ''
+                                Description: ''
+                                RunTime: 32
+                                ReleaseYear: 3
+                                Language: es
+                '400':
+                    description: Returns 400 when one or multiple required parameters are missing
+                    schema:
+                        $ref: '#/definitions/error'
+                    examples:
+                        application/json:
+                            -
+                                error: 'cannot change info, because some parameter missing.'
+                '404':
+                    description: 'Returns 404 when Film that is to be modified, is not found by the given FilmID'
+                    schema:
+                        $ref: '#/definitions/error'
+                    examples:
+                        application/json:
+                            -
+                                error: Film not found
         delete:
             tags:
                 - Films
