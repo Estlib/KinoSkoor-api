@@ -1,5 +1,6 @@
 
 const FilmsController = require("../controllers/FilmsController")
+const UsersController = require("../controllers/UsersController")
 
 module.exports = (app) => {
     app.route("/films")
@@ -10,5 +11,5 @@ module.exports = (app) => {
     .delete(FilmsController.deleteById)
     .put(FilmsController.modifyById)
     app.route("/users")
-    .post(FilmsController.create)
+    .post(UsersController.create)
 }

@@ -25,8 +25,12 @@ module.exports = (sequelize, DataTypes) => {
             PhoneNumber2FA: {
                 type: DataTypes.STRING,
                 allowNull: true
-            }
+            },
             // LISTID ORDERS MISSING DUE TO TABLE MISSING
+            // IsAdmin: {
+            //     type: DataTypes.BOOLEAN,
+            //     defaultValue: false
+            // }
         }
     )
     console.log(User === sequelize.models.User)

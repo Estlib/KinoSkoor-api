@@ -151,6 +151,40 @@ paths:
                 in: path
                 required: true
                 type: string
+    /users:
+        post:
+            tags:
+                - Users
+            parameters:
+                -
+                    name: body
+                    schema:
+                        $ref: '#/definitions/new-User'
+                    in: body
+                    required: true
+            responses:
+                '201':
+                    description: Send 201 when User is successfully added to the database
+                    schema:
+                        $ref: '#/definitions/new-User'
+                    examples:
+                        application/json:
+                            -
+                                FullName: 2ezrw
+                                EmailAddress: 5ys5l6
+                                PasswordHASH: ux55
+                                DisplayName: lkeb42
+                                PhoneNumber2FA: ''
+                '400':
+                    description: 'Send 400, when request body is missing some parameter.'
+                    schema:
+                        $ref: '#/definitions/error'
+                    examples:
+                        application/json:
+                            -
+                                error: 'Missing some parameter: ${errors}'
+            summary: Adds a new User to the app
+            description: 'Enables user signup functions, and further usage.'
 definitions:
     error:
         title: Root Type for error
@@ -199,3 +233,24 @@ definitions:
                 type: string
         example:
             FilmID: 5c545a29-cec3-11f0-b43f-901b0eec5991
+    new-User:
+        title: Root Type for new-User
+        description: 'New user data, PhoneNumber2FA is optional'
+        type: object
+        properties:
+            FullName:
+                type: string
+            EmailAddress:
+                type: string
+            PasswordHASH:
+                type: string
+            DisplayName:
+                type: string
+            PhoneNumber2FA:
+                type: string
+        example:
+            FullName: MyName LastName
+            EmailAddress: a@b.com
+            PasswordHASH: abc123
+            DisplayName: epicGamer
+            PhoneNumber2FA: 12 3456 7890
