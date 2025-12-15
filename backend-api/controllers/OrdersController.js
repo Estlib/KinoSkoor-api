@@ -15,8 +15,8 @@ exports.create = async (req,res) => {
         OrderID: UUID.v7(),
         OrderCost: req.body.OrderCost,
         DeliveryAddress: req.body.DeliveryAddress,
-        UserID: req.body.UserID,
-        FilmID: req.body.FilmID
+        UserUserID: req.body.UserID,
+        FilmFilmID: req.body.FilmID
     }
     const submittedOrder = await db.orders.create(newOrder);
     res

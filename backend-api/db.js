@@ -28,10 +28,8 @@ db.films = require("./models/Film.js")(sequelize,DataTypes);
 db.users = require("./models/User.js")(sequelize,DataTypes);
 db.orders = require("./models/Order.js")(sequelize, DataTypes, db.films, db.users)
 
-db.orders.hasMany(db.users)
-db.users.hasMany(db.orders)
-db.orders.hasMany(db.films)
-db.films.hasMany(db.orders)
+db.films.belongsToMany(db.users, {through: db.orders, as: "OrderedFilms"})
+db.users.belongsToMany(db.films, {through: db.orders })
 
 const sync = (async ()=> {
     await sequelize.sync({alter: true});

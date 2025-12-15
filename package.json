@@ -4,7 +4,8 @@
   "description": "Api and site, for reviewing movies, for Estonian market. (TARge24)\r -------------\r # How to run this app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"cd backend-api && nodemon .\" \"cd frontend-site\\kinoskoor-frontend && npm run serve\""
   },
   "keywords": [],
   "author": "",
