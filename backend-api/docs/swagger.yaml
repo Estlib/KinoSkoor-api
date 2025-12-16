@@ -166,15 +166,15 @@ paths:
                         application/json:
                             -
                                 UserID: ajgfyiwvb
-                                UserName: wfnvuoebnrg
+                                DisplayName: wfnvuoebnrg
                                 IsAdmin: false
                             -
                                 UserID: ajgfyiwvb
-                                UserName: wfnvuoebnrg
+                                DisplayName: wfnvuoebnrg
                                 IsAdmin: false
                             -
                                 UserID: ajgfyiwvb
-                                UserName: wfnvuoebnrg
+                                DisplayName: wfnvuoebnrg
                                 IsAdmin: false
             summary: 'Returns a list of all users, with limited details'
             description: 'Returns a list of all users, with limited details'
@@ -211,6 +211,41 @@ paths:
                                 error: 'Missing some parameter: ${errors}'
             summary: Adds a new User to the app
             description: 'Enables user signup functions, and further usage.'
+    '/users/{UserID}':
+        get:
+            responses:
+                '200':
+                    description: Returns all details of the given User
+                    schema:
+                        type: array
+                        items:
+                            type: string
+                    examples:
+                        application/json:
+                            UserID: srngvoueirngoi
+                            FullName: fname lname
+                            EmailAddress: a@b.com
+                            PasswordHASH: wurbguiwrbgubwrouigowirng
+                            DisplayName: abrakadabra
+                            IsAdmin: false
+                '404':
+                    description: Returns error when User is not found
+                    schema:
+                        $ref: '#/definitions/error'
+                    examples:
+                        application/json:
+                            -
+                                error: user not found
+            operationId: UserID
+            summary: Get all details of an existing User
+            description: 'Will return all details of a given User, based on UserID given'
+        parameters:
+            -
+                name: UserID
+                description: ID of User
+                in: path
+                required: true
+                type: string
 definitions:
     error:
         title: Root Type for error

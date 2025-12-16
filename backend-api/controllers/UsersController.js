@@ -53,6 +53,23 @@ async (req,res) => {
 exports.getAllUsers =
 async (req,res) => {
     const users = await db.users.findAll();
-    res.status(200).send(users.map(({UserID, UserName, IsAdmin}) => {return {UserID, UserName, IsAdmin }}))
+    res.status(200).send(users.map(({UserID, DisplayName, IsAdmin}) => {return {UserID, DisplayName, IsAdmin }}))
     
+}
+exports.getByID =
+async (req,res) => {
+    const user = await getUser(req, res);
+    if (!user) {return};
+    return res.send(user);
+}
+
+const getUser =
+async (req,res) => {
+    const userID = req.params.UserID;
+    const user = await db.users.findByPk(userID);
+    if (!user) {
+        res.status(404).send({error:`user by this id does not exist${userID}`})
+        return null;
+    }
+    return user;
 }
