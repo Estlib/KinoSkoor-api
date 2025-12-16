@@ -19,6 +19,12 @@ const routes = [
     path: '/films',
     name: 'films',
     component: () => import('../views/FilmsView.vue')
+  },
+  {
+    path: '/films/:seekID',
+    name: 'film',
+    component: () => import('../views/SingleFilmView.vue'),
+    props: route => {return {seekID: String(route.params.seekID)}}
   }
 ]
 
