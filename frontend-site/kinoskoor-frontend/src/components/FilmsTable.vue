@@ -8,7 +8,8 @@
             async deltest(FilmID) {
                 await (await fetch(`http://localhost:8080/films/${FilmID}`, {method: 'DELETE'}))
             }
-        },
+        }
+        }
 </script>
 
 <template>

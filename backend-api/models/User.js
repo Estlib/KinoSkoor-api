@@ -27,10 +27,10 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: true
             },
             // LISTID ORDERS MISSING DUE TO TABLE MISSING
-            // IsAdmin: {
-            //     type: DataTypes.BOOLEAN,
-            //     defaultValue: false
-            // }
+            IsAdmin: {
+                type: DataTypes.BOOLEAN,
+                defaultValue: false
+            }
         }
     )
     console.log(User === sequelize.models.User)

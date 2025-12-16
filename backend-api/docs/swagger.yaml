@@ -152,6 +152,32 @@ paths:
                 required: true
                 type: string
     /users:
+        get:
+            tags:
+                - Users
+            responses:
+                '200':
+                    description: Returns a list of existing Users
+                    schema:
+                        type: array
+                        items:
+                            type: string
+                    examples:
+                        application/json:
+                            -
+                                UserID: ajgfyiwvb
+                                UserName: wfnvuoebnrg
+                                IsAdmin: false
+                            -
+                                UserID: ajgfyiwvb
+                                UserName: wfnvuoebnrg
+                                IsAdmin: false
+                            -
+                                UserID: ajgfyiwvb
+                                UserName: wfnvuoebnrg
+                                IsAdmin: false
+            summary: 'Returns a list of all users, with limited details'
+            description: 'Returns a list of all users, with limited details'
         post:
             tags:
                 - Users

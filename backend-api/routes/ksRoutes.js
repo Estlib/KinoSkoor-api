@@ -11,5 +11,7 @@ module.exports = (app) => {
     .delete(FilmsController.deleteById)
     .put(FilmsController.modifyById)
     app.route("/users")
+    .get(UsersController.getAllUsers)
     .post(UsersController.create)
+
 }
