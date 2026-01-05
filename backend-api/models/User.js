@@ -26,7 +26,6 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.STRING,
                 allowNull: true
             },
-            // LISTID ORDERS MISSING DUE TO TABLE MISSING
             IsAdmin: {
                 type: DataTypes.BOOLEAN,
                 defaultValue: false
