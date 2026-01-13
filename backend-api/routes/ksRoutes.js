@@ -22,6 +22,8 @@ module.exports = (app) => {
     .get(UsersController.getByEmail)
     app.route("/sessions")
     .post(SessionsController.newSession)
+    app.route("/sessions/me")
+    .get(SessionsController.reAuthenticate)
 
 
 }
