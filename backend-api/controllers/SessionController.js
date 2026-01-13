@@ -16,5 +16,5 @@ async (req,res) => {
                 }     
         return res.status(400).send({error:"Missing parameter for logging in"+missingparams})
         }
-    const userToProvideSessionFor = await db.users.getByEmail(req.body.LoginEmail) //not implemented
+    const userToProvideSessionFor = await db.users.getByEmail(req.params.LoginEmail) //not implemented
 }

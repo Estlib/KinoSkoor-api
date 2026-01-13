@@ -246,6 +246,47 @@ paths:
                 in: path
                 required: true
                 type: string
+    '/auth/{LoginEmail}':
+        get:
+            tags:
+                - Users
+                - Auth
+            responses:
+                '200':
+                    description: Returns 200 when user with email address is found
+                    schema:
+                        type: array
+                        items:
+                            type: string
+                    examples:
+                        application/json:
+                            UserID: 019b031c-59f0-75af-b11b-96b3aee147de
+                            FullName: MyName LastName
+                            EmailAddress: a@b.com
+                            PasswordHASH: $2b$10$O2npsZQyxWKWO8zrx2X4muvqV080v65Vz/vdxq/6sNVXofWql8.Dy
+                            DisplayName: epicGamer
+                            PhoneNumber2FA: '[object Promise]'
+                            IsAdmin: false
+                            createdAt: '2025-12-09T12:35:48.000Z'
+                            updatedAt: '2025-12-09T12:35:48.000Z'
+                '400':
+                    description: 'Return response 400, when LoginEmail is missing.'
+                    examples:
+                        application/json: '{error:"Missing LoginEmail"}'
+                '404':
+                    description: Return 404 when user with this email is not found.
+                    schema:
+                        $ref: '#/definitions/error'
+                    examples:
+                        application/json: '{error:"user by this Email does not exist"}'
+            summary: Get a user by their Email address
+        parameters:
+            -
+                name: LoginEmail
+                description: Email by which the user is logging in
+                in: path
+                required: true
+                type: string
 definitions:
     error:
         title: Root Type for error
