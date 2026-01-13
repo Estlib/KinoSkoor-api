@@ -24,6 +24,8 @@ module.exports = (app) => {
     .post(SessionsController.newSession)
     app.route("/sessions/me")
     .get(SessionsController.reAuthenticate)
+    app.route("/auth/logout")
+    .delete(SessionsController.removeSession)
 
 
 }
