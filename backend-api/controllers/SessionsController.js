@@ -3,7 +3,6 @@ const Utilities = require("./Utilities.js")
 
 exports.newSession =
 async (req,res) => {
-
     console.log(req.body)
     if (req.body.LoginEmail === undefined || !req.body.LoginPassword === undefined) 
         {

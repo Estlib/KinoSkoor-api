@@ -287,6 +287,57 @@ paths:
                 in: path
                 required: true
                 type: string
+    /sessions:
+        post:
+            tags:
+                - Users
+                - Auth
+            parameters:
+                -
+                    name: body
+                    description: Data of the user
+                    schema:
+                        $ref: '#/definitions/login-User'
+                    in: body
+                    required: true
+            responses:
+                '200':
+                    description: Returns selected user data for site functioning
+                    schema:
+                        $ref: '#/definitions/loggedIn-User'
+                    examples:
+                        application/json:
+                            -
+                                UserID: r
+                                DisplayName: vk55f
+                                EmailAddress: x
+                                IsAdmin: false
+                '400':
+                    description: Returns bad request when parameters are missing
+                    schema:
+                        $ref: '#/definitions/error'
+                    examples:
+                        application/json:
+                            -
+                                error: Missing parameter for logging in
+                '401':
+                    description: Returns 401 Unauthorized when incorrect data is inserted.
+                    schema:
+                        $ref: '#/definitions/error'
+                    examples:
+                        application/json:
+                            -
+                                error: Password mismatch
+                '404':
+                    description: Returns error 404 when user is not found
+                    schema:
+                        $ref: '#/definitions/error'
+                    examples:
+                        application/json:
+                            -
+                                error: User not found
+            summary: Make session get cookie
+            description: Inserts a session object into database and gives the user a cookie
 definitions:
     error:
         title: Root Type for error
@@ -356,3 +407,33 @@ definitions:
             PasswordHASH: abc123
             DisplayName: epicGamer
             PhoneNumber2FA: 12 3456 7890
+    login-User:
+        title: Root Type for login-User
+        description: Data that the User provides upon an attempt to login
+        type: object
+        properties:
+            LoginEmail:
+                type: string
+            LoginPassword:
+                type: string
+        example:
+            LoginEmail: a@b.com
+            LoginPassword: '1234'
+    loggedIn-User:
+        title: Root Type for loggedIn-User
+        description: 'Data of the user, that is returned upon successful new session, or reauthenticating old session'
+        type: object
+        properties:
+            UserID:
+                type: string
+            DisplayName:
+                type: string
+            EmailAddress:
+                type: string
+            IsAdmin:
+                type: boolean
+        example:
+            UserID: 019bb7c2-3891-701c-81aa-fb3609ca1614
+            DisplayName: epicGamer
+            EmailAddress: a@c.com
+            IsAdmin: false
