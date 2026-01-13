@@ -5,26 +5,32 @@ const host = 'localhost';
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const session = require('express-session') // lisasin exprtess sessioni
 
 const swaggerUI = require('swagger-ui-express');
 const yamljs = require('yamljs');
-
 const swaggerDocument = yamljs.load('./docs/swagger.yaml')
 //const swaggerDocument = require('./docs/swagger.json')
 
-
-
-const { sync } = require("./db")
-
-
-// app.get('/films', (req, res) => {
-//     res.send(["Terminator 2", "Minions", "Devil wears a prada"])
-// })
-
-
+const { sync, sessionStore } = require("./db") //lisa sessionStore
 app.use(cors());
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.use(express.json());
+//sessioni sisu
+app.use(session({
+    secret: process.env.SESSIONSECRET || "dev",
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        sameSite: "lax",
+        secure: false,
+        maxAge: 7*24*60*60*1000
+    }
+}))
+sessionStore.sync(); //sünkroniseeri tabel
+
 
 require("./routes/ksRoutes.js")(app)
 
